@@ -1,0 +1,40 @@
+{
+    "tasks": [
+        {
+            "type": "cppbuild",
+            "label": "CompilarProgramasDeCenGNU17",
+            "command": "C:\\cygwin64\\bin\\gcc.exe",
+            "args": [
+                "-fdiagnostics-color=always",
+                "-g",
+                "${file}",
+                "-std=gnu17",
+                "-o",
+                "${fileDirname}\\${fileBasenameNoExtension}.exe"
+            ],
+            "options": {
+                "cwd": "${fileDirname}"
+            },
+            "problemMatcher": [
+                "$gcc"
+            ]
+        },
+        {
+            "label": "CorreElPrograma",
+            "type": "shell",
+            "command" : "${fileDirname}\\${fileBasenameNoExtension}.exe",
+            "dependsOn" : "CompilarProgramasDeCenGNU17"
+        },
+        {
+            "label": "CompilaCorreYCreaUnTextoConLaSalidaDelPrograma",
+            "type": "shell",
+            "command" : "${fileDirname}\\${fileBasenameNoExtension}.exe > ${fileDirname}\\output.txt",
+            "dependsOn" : "CorreElPrograma",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        }
+    ],
+    "version": "2.0.0"
+}
